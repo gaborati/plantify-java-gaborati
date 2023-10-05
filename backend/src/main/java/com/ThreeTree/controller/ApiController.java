@@ -1,6 +1,6 @@
 package com.ThreeTree.controller;
 import com.ThreeTree.model.Person;
-import com.ThreeTree.model.NewCustomerRequest;
+import com.ThreeTree.dto.NewCustomerRequest;
 import com.ThreeTree.service.CustomerService;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +30,7 @@ public class ApiController {
         Person person = new Person();
         person.setName(request.name());
         person.setEmail(request.email());
-        customerService.save(person);
+        customerService.saveCustomer(person);
     }
 
 
