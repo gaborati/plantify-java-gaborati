@@ -32,14 +32,39 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-            name: data.get('name'),
-            email: data.get('email'),
 
-        });
+        const requestBody = {
+            name: data.get('name'),
+            email: data.get('email')
+        };
+
+        try {
+            const response = await fetch('/api/customers', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestBody)
+            });
+
+            if (!response.ok) {
+                throw new Error("ERROR: Failed to send request to server.");
+            }
+
+            const contentType = response.headers.get("content-type");
+            if (contentType && contentType.includes("application/json")) {
+                const responseData = await response.json();
+                console.log('Response from server:', responseData);
+            } else {
+                console.log('Response is not JSON');
+            }
+
+        } catch (error) {
+            console.error('Failed to send request:', error);
+        }
     };
 
     return (
