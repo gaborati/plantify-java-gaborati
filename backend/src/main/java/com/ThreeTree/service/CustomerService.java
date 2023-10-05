@@ -22,11 +22,8 @@ public class CustomerService {
         return customerRepository.findById(id).orElseThrow();
     }
 
-    public void addCustomer(Person person) {
-        customerRepository.save(person);
-    }
 
-    public void save(Person person) {
+    public void saveCustomer(Person person) {
         customerRepository.save(person);
     }
 }

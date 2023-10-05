@@ -3,9 +3,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5532/customer
-    username: threetree
-    password: threetree
+    url: jdbc:postgresql://localhost:${DB_PORT}/customer
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
 
   jpa:
     hibernate:
