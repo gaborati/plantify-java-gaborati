@@ -5,7 +5,8 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "CustomerOrder")
+@Table(name = "customer_order")
 public class Order {
 
     @Id
