@@ -1,7 +1,7 @@
 package com.ThreeTree.service;
 
 import com.ThreeTree.dao.CustomerRepository;
-import com.ThreeTree.model.Customer;
+import com.ThreeTree.model.Person;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,19 +14,19 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    public List<Customer> getCustomers() {
+    public List<Person> getCustomers() {
         return customerRepository.findAll();
     }
 
-    public Customer getCustomerById(Integer id) {
+    public Person getCustomerById(Integer id) {
         return customerRepository.findById(id).orElseThrow();
     }
 
-    public void addCustomer(Customer customer) {
-        customerRepository.save(customer);
+    public void addCustomer(Person person) {
+        customerRepository.save(person);
     }
 
-    public void save(Customer customer) {
-        customerRepository.save(customer);
+    public void save(Person person) {
+        customerRepository.save(person);
     }
 }

@@ -1,5 +1,5 @@
 package com.ThreeTree.controller;
-import com.ThreeTree.model.Customer;
+import com.ThreeTree.model.Person;
 import com.ThreeTree.model.NewCustomerRequest;
 import com.ThreeTree.service.CustomerService;
 import org.springframework.web.bind.annotation.*;
@@ -16,21 +16,21 @@ public class ApiController {
     }
 
     @GetMapping
-    public List<Customer> getCustomers() {
+    public List<Person> getCustomers() {
         return customerService.getCustomers();
     }
 
     @GetMapping("/{customerId}")
-    public Customer getCustomerById(@PathVariable("customerId") Integer id) {
+    public Person getCustomerById(@PathVariable("customerId") Integer id) {
         return customerService.getCustomerById(id);
     }
 
     @PostMapping
     public void addCustomer(@RequestBody NewCustomerRequest request) {
-        Customer customer = new Customer();
-        customer.setName(request.name());
-        customer.setEmail(request.email());
-        customerService.save(customer);
+        Person person = new Person();
+        person.setName(request.name());
+        person.setEmail(request.email());
+        customerService.save(person);
     }
 
 

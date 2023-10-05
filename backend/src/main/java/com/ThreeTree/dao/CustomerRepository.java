@@ -1,7 +1,7 @@
 package com.ThreeTree.dao;
 
-import com.ThreeTree.model.Customer;
+import com.ThreeTree.model.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CustomerRepository extends JpaRepository<Customer, Integer> {
+public interface CustomerRepository extends JpaRepository<Person, Integer> {
 }

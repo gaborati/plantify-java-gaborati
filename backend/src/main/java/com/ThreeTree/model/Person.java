@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Customer {
-    public Customer(Integer id, String name, String email) {
+public class Person {
+    public Person(Integer id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -26,7 +26,7 @@ public class Customer {
 
     private Integer id;
 
-    public Customer() {
+    public Person() {
 
     }
 
@@ -61,8 +61,8 @@ public class Customer {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Customer customer = (Customer) o;
-        return Objects.equals(id, customer.id) && Objects.equals(name, customer.name) && Objects.equals(email, customer.email);
+        Person person = (Person) o;
+        return Objects.equals(id, person.id) && Objects.equals(name, person.name) && Objects.equals(email, person.email);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" +
+        return "Person{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
