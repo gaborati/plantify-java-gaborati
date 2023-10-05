@@ -52,14 +52,8 @@ export default function SignUp() {
 
             if (!response.ok) {
                 throw new Error("ERROR: Failed to send request to server.");
-            }
-
-            const contentType = response.headers.get("content-type");
-            if (contentType && contentType.includes("application/json")) {
-                const responseData = await response.json();
-                console.log('Response from server:', responseData);
             } else {
-                console.log('Response is not JSON');
+                console.log("Successfully sent request to server.");
             }
 
         } catch (error) {

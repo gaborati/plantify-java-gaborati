@@ -1,7 +1,7 @@
 package com.ThreeTree.controller;
 import com.ThreeTree.model.Person;
-import com.ThreeTree.dto.NewCustomerRequest;
-import com.ThreeTree.service.CustomerService;
+import com.ThreeTree.dto.NewPersonRequest;
+import com.ThreeTree.service.PersonService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,28 +9,28 @@ import java.util.List;
 @RestController
 @RequestMapping("api/customers")
 public class ApiController {
-    private final CustomerService customerService;
+    private final PersonService personService;
 
-    public ApiController(CustomerService customerService) {
-        this.customerService = customerService;
+    public ApiController(PersonService personService) {
+        this.personService = personService;
     }
 
     @GetMapping
     public List<Person> getCustomers() {
-        return customerService.getCustomers();
+        return personService.getCustomers();
     }
 
     @GetMapping("/{customerId}")
     public Person getCustomerById(@PathVariable("customerId") Integer id) {
-        return customerService.getCustomerById(id);
+        return personService.getCustomerById(id);
     }
 
     @PostMapping
-    public void addCustomer(@RequestBody NewCustomerRequest request) {
+    public void addCustomer(@RequestBody NewPersonRequest request) {
         Person person = new Person();
         person.setName(request.name());
         person.setEmail(request.email());
-        customerService.saveCustomer(person);
+        personService.saveCustomer(person);
     }
 
 
