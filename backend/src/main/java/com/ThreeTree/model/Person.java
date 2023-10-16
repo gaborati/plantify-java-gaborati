@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 public class Person {
-    public Person(Integer id, String name, String email) {
+    public Person(Long id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -24,17 +24,17 @@ public class Person {
     )
 
 
-    private Integer id;
+    private Long id;
 
     public Person() {
 
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
