@@ -23,9 +23,8 @@ public class Order {
     private Integer customerId;
 
     @ElementCollection
-    @MapKeyColumn(name = "product_id")
     @Column(name = "quantity")
-    @CollectionTable(name = "order_products", joinColumns = @JoinColumn(name = "order_id"))
+    @CollectionTable(name = "order_products")
     private Map<Integer, Integer> productsQuantities = new HashMap<>();
 
     public Order(Integer orderId, Integer customerId, Map<Integer, Integer> productsQuantities) {
