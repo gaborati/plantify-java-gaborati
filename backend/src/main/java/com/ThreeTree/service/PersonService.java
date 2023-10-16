@@ -18,12 +18,23 @@ public class PersonService {
         return personRepository.findAll();
     }
 
-    public Person getCustomerById(Integer id) {
+    public Person getCustomerById(Long id) {
         return personRepository.findById(id).orElseThrow();
     }
 
 
     public void saveCustomer(Person person) {
         personRepository.save(person);
+    }
+
+    public void updateCustomerById(Long id, Person person) {
+        Person personToUpdate = personRepository.;
+        personToUpdate.setName(person.getName());
+        personToUpdate.setEmail(person.getEmail());
+        personRepository.save(personToUpdate);
+    }
+
+    public void deleteCustomerById(Long id) {
+        personRepository.deleteById(id);
     }
 }
