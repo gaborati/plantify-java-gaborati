@@ -4,8 +4,8 @@ services:
     image: postgres
     environment:
       POSTGRES_DB: customer
-      POSTGRES_USER: ${DB_USERNAME}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: threetree
+      POSTGRES_PASSWORD: threetree
       PGDATA: /data/postgres
     volumes:
       - db:/data/postgres
