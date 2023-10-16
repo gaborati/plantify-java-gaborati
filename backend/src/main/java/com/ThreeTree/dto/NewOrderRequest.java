@@ -2,6 +2,6 @@ package com.ThreeTree.dto;
 
 import java.util.Map;
 
-public record NewOrderRequest(Integer customerId,
+public record NewOrderRequest(Long customerId,
                               Map<Integer, Integer> productsQuantities) {
 }

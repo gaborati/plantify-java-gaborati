@@ -19,15 +19,15 @@ public class Order {
             strategy = GenerationType.SEQUENCE,
             generator = "order_id_sequence"
     )
-    private Integer orderId;
-    private Integer customerId;
+    private Long orderId;
+    private Long customerId;
 
     @ElementCollection
     @Column(name = "quantity")
     @CollectionTable(name = "order_products")
-    private Map<Integer, Integer> productsQuantities = new HashMap<>();
+    private Map<Long, Integer> productsQuantities = new HashMap<>();
 
-    public Order(Integer orderId, Integer customerId, Map<Integer, Integer> productsQuantities) {
+    public Order(Long orderId, Long customerId, Map<Long, Integer> productsQuantities) {
         this.orderId = orderId;
         this.customerId = customerId;
         this.productsQuantities = productsQuantities;
@@ -36,27 +36,27 @@ public class Order {
     public Order() {
     }
 
-    public Integer getOrderId() {
+    public Long getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Integer id) {
+    public void setOrderId(Long id) {
         this.orderId = id;
     }
 
-    public Integer getCustomerId() {
+    public Long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Integer customer_id) {
+    public void setCustomerId(Long customer_id) {
         this.customerId = customer_id;
     }
 
-    public Map<Integer, Integer> getProductsQuantities() {
+    public Map<Long, Integer> getProductsQuantities() {
         return productsQuantities;
     }
 
-    public void setProductsQuantities(Map<Integer, Integer> productsQuantities) {
+    public void setProductsQuantities(Map<Long, Integer> productsQuantities) {
         this.productsQuantities = productsQuantities;
     }
 

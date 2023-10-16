@@ -4,7 +4,6 @@ server:
 spring:
   datasource:
     url: jdbc:postgresql://localhost:${DB_PORT}/customer
-
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
 

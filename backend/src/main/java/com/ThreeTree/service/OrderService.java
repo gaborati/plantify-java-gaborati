@@ -1,6 +1,7 @@
 package com.ThreeTree.service;
 
 import com.ThreeTree.dao.OrderRepository;
+import com.ThreeTree.dto.NewOrderRequest;
 import com.ThreeTree.model.Order;
 import org.springframework.stereotype.Service;
 
@@ -18,15 +19,18 @@ public class OrderService {
         orderRepository.save(order);
     }
 
-    public void deleteOrder(Order order) {
+    public void deleteOrder(Long id) {
+        Order order = orderRepository.findById(id).get();
         orderRepository.delete(order);
     }
 
-    public void updateOrder(Order order) {
-        orderRepository.save(order);
+    public void updateOrder(Long id, Order order) {
+        Order orderToUpdate = orderRepository.findById(id).orElseThrow();
+        orderToUpdate.setProductsQuantities(order.getProductsQuantities());
+        orderRepository.save(orderToUpdate);
     }
 
-    public Order getOrderById(Integer id) {
+    public Order getOrderById(Long id) {
         return orderRepository.findById(id).orElseThrow();
     }
 
