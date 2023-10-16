@@ -28,7 +28,7 @@ public class PersonService {
     }
 
     public void updateCustomerById(Long id, Person person) {
-        Person personToUpdate = personRepository.;
+        Person personToUpdate = personRepository.findById(id).orElseThrow();
         personToUpdate.setName(person.getName());
         personToUpdate.setEmail(person.getEmail());
         personRepository.save(personToUpdate);
