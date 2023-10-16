@@ -1,10 +1,14 @@
 package com.ThreeTree.controller;
-import com.ThreeTree.model.Person;
-import com.ThreeTree.dto.NewPersonRequest;
-import com.ThreeTree.service.PersonService;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+import java.util.NoSuchElementException;
+
+import com.ThreeTree.dto.NewPersonRequest;
+import com.ThreeTree.model.Person;
+import com.ThreeTree.service.PersonService;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/customers")
@@ -18,6 +22,11 @@ public class ApiController {
     @GetMapping
     public List<Person> getCustomers() {
         return personService.getCustomers();
+    }
+
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<String> missingPerson(NoSuchElementException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/{customerId}")
