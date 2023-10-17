@@ -4,6 +4,7 @@ import com.ThreeTree.dto.NewOrderRequest;
 import com.ThreeTree.model.Order;
 import com.ThreeTree.model.Person;
 import com.ThreeTree.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
 public class OrderController {
 
     private final OrderService orderService;
-
+    @Autowired
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
