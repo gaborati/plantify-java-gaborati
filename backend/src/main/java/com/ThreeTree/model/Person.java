@@ -3,6 +3,8 @@ package com.ThreeTree.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Set;
+
 @Entity
 @Getter
 @Setter
@@ -31,4 +33,6 @@ public class Person {
     private String email;
     private Integer phoneNumber;
 
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Order> orders;
 }
