@@ -33,6 +33,6 @@ public class Person {
     private String email;
     private Integer phoneNumber;
 
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
     private Set<Order> orders;
 }
