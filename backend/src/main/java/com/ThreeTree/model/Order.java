@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.Map;
 import java.util.HashMap;
 
-@Entity(name = "CustomerOrder")
+@Entity(name = "Orders")
 @Getter
 @Setter
 @Builder
