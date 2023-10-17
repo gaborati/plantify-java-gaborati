@@ -1,10 +1,16 @@
 package com.ThreeTree.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
-import java.util.Objects;
+import java.math.BigDecimal;
 
 @Entity
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product {
 
     @Id
@@ -18,55 +24,10 @@ public class Product {
             generator = "product_id_sequence"
     )
 
-    private Integer productId;
-    private String name;
+    private Long productId;
+    private String sku;
+    private String description;
+    private BigDecimal price;
+    private Integer stock;
 
-    private Integer price;
-
-    public Product(Integer productId, String name, Integer price) {
-        this.productId = productId;
-        this.name = name;
-        this.price = price;
-    }
-
-    public Product() {
-
-    }
-
-    public Integer getProductId() {
-        return productId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setId(Integer productId) {
-        this.productId = productId;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return Objects.equals(productId, product.productId) && Objects.equals(name, product.name) && Objects.equals(price, product.price);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(productId, name, price);
-    }
 }
