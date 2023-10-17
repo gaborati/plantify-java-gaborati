@@ -23,7 +23,7 @@ public class OrderService {
 
     public void updateOrder(Long id, Order order) {
         Order orderToUpdate = orderRepository.findById(id).orElseThrow();
-        orderToUpdate.setProductsQuantities(order.getProductsQuantities());
+        orderToUpdate.setProducts(order.getProducts());
         orderRepository.save(orderToUpdate);
     }
 

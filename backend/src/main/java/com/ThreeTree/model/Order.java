@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Set;
 
 @Entity(name = "Orders")
 @Getter
@@ -30,8 +31,8 @@ public class Order {
     private Date orderDate;
     private BigDecimal orderTotal;
 
-    @ElementCollection
-    private Map<Product, Integer> productsQuantities = new HashMap<>();
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<Product> products;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Person person;
