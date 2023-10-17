@@ -31,6 +31,8 @@ public class Order {
     private BigDecimal orderTotal;
 
     @ElementCollection
-    private Map<Long, Integer> productsQuantities = new HashMap<>();
+    private Map<Product, Integer> productsQuantities = new HashMap<>();
 
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Person person;
 }
