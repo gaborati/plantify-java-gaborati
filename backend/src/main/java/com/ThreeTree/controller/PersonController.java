@@ -14,12 +14,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("api/customers")
 public class PersonController {
-    private final PersonService personService;
-
     @Autowired
-    public PersonController(PersonService personService) {
-        this.personService = personService;
-    }
+    private PersonService personService;
 
     @GetMapping
     public List<Person> getCustomers() {
@@ -38,10 +34,7 @@ public class PersonController {
 
     @PostMapping
     public void addCustomer(@RequestBody NewPersonRequest request) {
-        Person person = new Person();
-        person.setName(request.name());
-        person.setEmail(request.email());
-        personService.saveCustomer(person);
+        personService.saveCustomer(request);
     }
 
     @PutMapping("/{customerId}")
@@ -53,6 +46,5 @@ public class PersonController {
     public void deleteCustomerById(@PathVariable("customerId") Long id) {
         personService.deleteCustomerById(id);
     }
-
 
 }
