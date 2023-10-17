@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.Map;
 import java.util.HashMap;
 
-@Entity(name = "CustomerOrder")
+@Entity(name = "Orders")
 @Getter
 @Setter
 @Builder
@@ -31,6 +31,8 @@ public class Order {
     private BigDecimal orderTotal;
 
     @ElementCollection
-    private Map<Long, Integer> productsQuantities = new HashMap<>();
+    private Map<Product, Integer> productsQuantities = new HashMap<>();
 
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Person person;
 }

@@ -1,8 +1,6 @@
 package com.ThreeTree.controller;
 
-import com.ThreeTree.dto.NewOrderRequest;
 import com.ThreeTree.model.Order;
-import com.ThreeTree.model.Person;
 import com.ThreeTree.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
