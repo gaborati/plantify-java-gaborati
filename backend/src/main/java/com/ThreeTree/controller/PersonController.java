@@ -17,14 +17,14 @@ public class PersonController {
     @Autowired
     private PersonService personService;
 
-    @GetMapping
-    public List<Person> getCustomers() {
-        return personService.getCustomers();
-    }
-
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<String> missingPerson(NoSuchElementException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping
+    public List<Person> getCustomers() {
+        return personService.getCustomers();
     }
 
     @GetMapping("/{customerId}")

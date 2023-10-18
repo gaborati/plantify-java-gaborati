@@ -34,5 +34,4 @@ public class Product {
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Order> orders;
 
-
 }

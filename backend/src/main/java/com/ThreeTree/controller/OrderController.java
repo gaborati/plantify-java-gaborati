@@ -3,18 +3,23 @@ package com.ThreeTree.controller;
 import com.ThreeTree.model.Order;
 import com.ThreeTree.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("api/orders")
 public class OrderController {
 
-    private final OrderService orderService;
     @Autowired
-    public OrderController(OrderService orderService) {
-        this.orderService = orderService;
+    private OrderService orderService;
+
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<String> missingOrder(NoSuchElementException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     @GetMapping
@@ -41,4 +46,5 @@ public class OrderController {
     public void deleteOrder(@PathVariable("id") Long id) {
         orderService.deleteOrder(id);
     }
+
 }
