@@ -1,8 +1,9 @@
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
 import {ThemeProvider, useTheme} from "@mui/material/styles";
 
-function SuccessfullySignedUp() {
+
+function SuccessfullyOrdered() {
     const theme = useTheme();
 
     const customStyles = {
@@ -25,12 +26,12 @@ function SuccessfullySignedUp() {
             >
                 <Container maxWidth="sm">
                     <Typography variant="h4" gutterBottom
-                                style={{fontSize: '45px', fontWeight: 'bold', color: 'antiquewhite'}}>
-                        Successfully Signed Up
+                                style={{fontSize: '45px', fontWeight: 'bold', color: 'whiteSmoke'}}>
+                        Successfully Ordered
                     </Typography>
                     <Typography variant="h4" gutterBottom
-                                style={{fontSize: '25px', fontWeight: 'bold', color: 'antiquewhite'}}>
-                        Congratulations! You have successfully signed up.
+                                style={{fontSize: '25px', fontWeight: 'bold', color: 'whitesmoke'}}>
+                        Thank you! Your order has been successfully placed.
                     </Typography>
                 </Container>
             </div>
@@ -38,6 +39,4 @@ function SuccessfullySignedUp() {
     )
 }
 
-
-export default SuccessfullySignedUp;
-
+export default SuccessfullyOrdered;
