@@ -3,19 +3,23 @@ package com.ThreeTree.controller;
 import com.ThreeTree.model.Product;
 import com.ThreeTree.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("api/products")
 public class ProductController {
 
-    private final ProductService productService;
-
     @Autowired
-    public ProductController(ProductService productService) {
-        this.productService = productService;
+    private ProductService productService;
+
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<String> missingProduct(NoSuchElementException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     @GetMapping
