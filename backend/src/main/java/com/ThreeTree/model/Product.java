@@ -26,10 +26,12 @@ public class Product {
     )
 
     private Long productId;
+    private String name;
     private String sku;
     private String description;
     private BigDecimal price;
     private Integer stock;
+    private String image;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Order> orders;
