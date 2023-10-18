@@ -14,8 +14,12 @@ import java.util.NoSuchElementException;
 @RequestMapping("api/products")
 public class ProductController {
 
+    private final ProductService productService;
+
     @Autowired
-    private ProductService productService;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<String> missingProduct(NoSuchElementException ex) {
