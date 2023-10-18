@@ -12,7 +12,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {createTheme, ThemeProvider} from '@mui/material/styles';
 
 function Copyright(props) {
     return (
@@ -28,7 +28,6 @@ function Copyright(props) {
 }
 
 
-
 const defaultTheme = createTheme();
 
 export default function SignUp() {
@@ -37,7 +36,8 @@ export default function SignUp() {
         const data = new FormData(event.currentTarget);
 
         const requestBody = {
-            name: data.get('name'),
+            FirstName: data.get('First Name'),
+            LastName: data.get('Last Name'),
             email: data.get('email')
         };
 
@@ -64,7 +64,7 @@ export default function SignUp() {
     return (
         <ThemeProvider theme={defaultTheme}>
             <Container component="main" maxWidth="xs">
-                <CssBaseline />
+                <CssBaseline/>
                 <Box
                     sx={{
                         marginTop: 8,
@@ -73,19 +73,29 @@ export default function SignUp() {
                         alignItems: 'center',
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                        <LockOutlinedIcon />
+                    <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
+                        <LockOutlinedIcon/>
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         Sign up
                     </Typography>
-                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{mt: 1}}>
                         <TextField
                             margin="normal"
                             required
                             fullWidth
-                            name="name"
-                            label="Name"
+                            name="First Name"
+                            label="First Name"
+                            type="name"
+                            id="name"
+                            autoComplete="current-password"
+                        />
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="Last Name"
+                            label="Last Name"
                             type="name"
                             id="name"
                             autoComplete="current-password"
@@ -101,14 +111,14 @@ export default function SignUp() {
                             autoFocus
                         />
                         <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
+                            control={<Checkbox value="remember" color="primary"/>}
                             label="Remember me"
                         />
                         <Button
                             type="submit"
                             fullWidth
                             variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
+                            sx={{mt: 3, mb: 2}}
                         >
                             Sign Up
                         </Button>
@@ -118,7 +128,7 @@ export default function SignUp() {
                         </Grid>
                     </Box>
                 </Box>
-                <Copyright sx={{ mt: 8, mb: 4 }} />
+                <Copyright sx={{mt: 8, mb: 4}}/>
             </Container>
         </ThemeProvider>
     );
