@@ -29,9 +29,9 @@ public class Person {
     private String FirstName;
     private String LastName;
     private String passwordHash;
-    private String address;
     private String email;
-    private Integer phoneNumber;
+    private String phoneNumber;
+    private String address;
 
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
     private Set<Order> orders;

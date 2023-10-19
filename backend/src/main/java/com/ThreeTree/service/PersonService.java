@@ -28,6 +28,8 @@ public class PersonService {
         person.setFirstName(request.FirstName());
         person.setLastName(request.LastName());
         person.setEmail(request.email());
+        person.setAddress(request.address());
+        person.setPhoneNumber(request.phoneNumber());
         personRepository.save(person);
     }
 

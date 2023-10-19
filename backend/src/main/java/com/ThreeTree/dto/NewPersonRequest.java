@@ -4,6 +4,6 @@ public record NewPersonRequest(String FirstName,
                                String LastName,
                                String address,
                                String email,
-                               Integer phoneNumber
+                               String phoneNumber
 ) {
 }
