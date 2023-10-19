@@ -1,5 +1,6 @@
 package com.ThreeTree.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -33,6 +34,7 @@ public class Person {
     private String phoneNumber;
     private String address;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
     private Set<Order> orders;
 }
