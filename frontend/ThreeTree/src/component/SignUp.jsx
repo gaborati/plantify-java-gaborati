@@ -38,7 +38,9 @@ export default function SignUp() {
         const requestBody = {
             FirstName: data.get('First Name'),
             LastName: data.get('Last Name'),
-            email: data.get('email')
+            email: data.get('email'),
+            phoneNumber: data.get('phoneNumber'),
+            address: data.get('address')
         };
 
         try {
@@ -104,29 +106,31 @@ export default function SignUp() {
                             margin="normal"
                             required
                             fullWidth
-                            name="Address"
+                            name="address"
                             label="Address"
                             type="text"
                             id="address"
                             autoComplete="address-line1"
                         />
+
                         <TextField
                             margin="normal"
                             required
                             fullWidth
                             label="Email Address"
                             name="email"
-                            type="email"
+                            type="text"
                             id="email"
                             autoComplete="email"
                         />
+
                         <TextField
                             margin="normal"
                             required
                             fullWidth
                             label="Phone Number"
-                            name="Phone Number"
-                            type="tel"
+                            name="phoneNumber"
+                            type="text"
                             id="phoneNumber"
                             autoComplete="tel"
                         />
