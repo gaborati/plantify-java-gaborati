@@ -9,8 +9,15 @@ import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import Review from './Review';
+import {useEffect} from "react";
 
 function Copyright() {
+
+
+
+
+
+
     return (
         <Typography variant="body2" color="text.secondary" align="center">
             {'Copyright © '}
@@ -33,7 +40,7 @@ export default function Checkout() {
     return (
         <React.Fragment>
             <CssBaseline />
-            <AppBar position="absolute" color="default" elevation={0} sx={{ position: 'relative', borderBottom: (t) => `1px solid ${t.palette.divider}` }}>
+            <AppBar position="absolute" elevation={0} sx={{ position: 'relative', borderBottom: (t) => `1px solid ${t.palette.divider}`, backgroundColor: 'black' }}>
                 <Toolbar>
                     <Typography variant="h6" color="inherit" noWrap>
                         Company name
