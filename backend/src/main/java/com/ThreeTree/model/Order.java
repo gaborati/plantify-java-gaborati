@@ -1,5 +1,7 @@
 package com.ThreeTree.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -31,9 +33,12 @@ public class Order {
     private Date orderDate;
     private BigDecimal orderTotal;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private Set<Product> products;
 
+    @JsonBackReference
+    @ElementCollection
+    private Map<Product, Integer> productsQuantities = new HashMap<>();
+
+    @JsonBackReference
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Person person;
 }
