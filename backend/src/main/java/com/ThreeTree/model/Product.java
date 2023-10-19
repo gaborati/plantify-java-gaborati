@@ -1,5 +1,6 @@
 package com.ThreeTree.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,11 +27,14 @@ public class Product {
     )
 
     private Long productId;
+    private String name;
     private String sku;
     private String description;
     private BigDecimal price;
     private Integer stock;
+    private String image;
 
+    @JsonBackReference
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Order> orders;
 

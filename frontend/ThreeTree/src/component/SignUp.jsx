@@ -38,7 +38,9 @@ export default function SignUp() {
         const requestBody = {
             FirstName: data.get('First Name'),
             LastName: data.get('Last Name'),
-            email: data.get('email')
+            email: data.get('email'),
+            phoneNumber: data.get('phoneNumber'),
+            address: data.get('address')
         };
 
         try {
@@ -86,9 +88,9 @@ export default function SignUp() {
                             fullWidth
                             name="First Name"
                             label="First Name"
-                            type="name"
-                            id="name"
-                            autoComplete="current-password"
+                            type="text"
+                            id="firstName"
+                            autoComplete="given-name"
                         />
                         <TextField
                             margin="normal"
@@ -96,19 +98,41 @@ export default function SignUp() {
                             fullWidth
                             name="Last Name"
                             label="Last Name"
-                            type="name"
-                            id="name"
-                            autoComplete="current-password"
+                            type="text"
+                            id="lastName"
+                            autoComplete="family-name"
                         />
                         <TextField
                             margin="normal"
                             required
                             fullWidth
-                            id="email"
+                            name="address"
+                            label="Address"
+                            type="text"
+                            id="address"
+                            autoComplete="address-line1"
+                        />
+
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
                             label="Email Address"
                             name="email"
+                            type="text"
+                            id="email"
                             autoComplete="email"
-                            autoFocus
+                        />
+
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            label="Phone Number"
+                            name="phoneNumber"
+                            type="text"
+                            id="phoneNumber"
+                            autoComplete="tel"
                         />
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary"/>}
