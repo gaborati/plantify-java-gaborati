@@ -3,34 +3,39 @@ package com.ThreeTree.service;
 import com.ThreeTree.dao.OrderRepository;
 import com.ThreeTree.dto.NewOrderRequest;
 import com.ThreeTree.model.Order;
-import com.ThreeTree.model.Person;
 import com.ThreeTree.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
 @Transactional
 @Service
 public class OrderService {
-    @Autowired
-    private OrderRepository orderRepository;
+    private final OrderRepository orderRepository;
+
+    private final ProductService productService;
+
+    private final PersonService personService;
 
     @Autowired
-    private ProductService productService;
-
-    @Autowired
-    private PersonService personService;
+    public OrderService(
+            OrderRepository orderRepository,
+            ProductService productService,
+            PersonService personService
+    ) {
+        this.orderRepository = orderRepository;
+        this.productService = productService;
+        this.personService = personService;
+    }
 
     public void saveOrder(NewOrderRequest newOrderRequest) {
-        if(newOrderRequest.productsQuantities() != null) {
+        if (newOrderRequest.productsQuantities() != null) {
             Order newOrder = new Order();
 
             Map<Product, Integer> productsQuantities = new HashMap<>();
@@ -78,6 +83,6 @@ public class OrderService {
     }
 
     public List<Order> getOrders() {
-       return orderRepository.findAll();
+        return orderRepository.findAll();
     }
 }

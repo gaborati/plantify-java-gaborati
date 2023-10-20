@@ -12,8 +12,11 @@ import java.util.List;
 @Transactional
 @Service
 public class PersonService {
-    @Autowired
     private PersonRepository personRepository;
+    @Autowired
+    public PersonService(PersonRepository personRepository) {
+        this.personRepository = personRepository;
+    }
 
     public List<Person> getCustomers() {
         return personRepository.findAll();

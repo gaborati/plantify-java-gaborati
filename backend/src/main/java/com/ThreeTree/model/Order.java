@@ -33,6 +33,6 @@ public class Order {
     @ElementCollection
     private Map<Product, Integer> productsQuantities;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne
     private Person person;
 }
