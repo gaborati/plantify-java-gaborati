@@ -27,6 +27,7 @@ public class OrderController {
 
     @GetMapping
     public List<Order> getAllOrders() {
+        System.out.println("tfztguh");
         return orderService.getOrders();
     }
 
@@ -37,7 +38,7 @@ public class OrderController {
 
     @PostMapping
     public void addOrder(@RequestBody Order order) {
-        orderService.saveOrder(order);
+       orderService.saveOrder(order);
     }
 
     @PutMapping("/{id}")
