@@ -1,5 +1,6 @@
 package com.ThreeTree.controller;
 
+import com.ThreeTree.dto.NewOrderRequest;
 import com.ThreeTree.model.Order;
 import com.ThreeTree.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +38,8 @@ public class OrderController {
     }
 
     @PostMapping
-    public void addOrder(@RequestBody Order order) {
-       orderService.saveOrder(order);
+    public void addOrder(@RequestBody NewOrderRequest newOrderRequest) {
+       orderService.saveOrder(newOrderRequest);
     }
 
     @PutMapping("/{id}")

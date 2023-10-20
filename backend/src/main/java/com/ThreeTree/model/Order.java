@@ -1,14 +1,11 @@
 package com.ThreeTree.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Map;
-import java.util.HashMap;
-import java.util.Set;
 
 @Entity(name = "Orders")
 @Getter
@@ -29,7 +26,7 @@ public class Order {
             generator = "order_id_sequence"
     )
     private Long orderId;
-    private Date orderDate;
+    private LocalDate orderDate;
     private BigDecimal orderTotal;
 
 

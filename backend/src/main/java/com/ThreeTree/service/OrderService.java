@@ -1,6 +1,7 @@
 package com.ThreeTree.service;
 
 import com.ThreeTree.dao.OrderRepository;
+import com.ThreeTree.dto.NewOrderRequest;
 import com.ThreeTree.model.Order;
 import com.ThreeTree.model.Person;
 import com.ThreeTree.model.Product;
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 @Transactional
 @Service
@@ -21,9 +23,44 @@ public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
-    public void saveOrder(Order order) {
-        orderRepository.save(order);
+    @Autowired
+    private ProductService productService;
+
+    @Autowired
+    private PersonService personService;
+
+    public void saveOrder(NewOrderRequest newOrderRequest) {
+        if(newOrderRequest.productsQuantities() != null) {
+            Order newOrder = new Order();
+
+            Map<Product, Integer> productsQuantities = new HashMap<>();
+            for (Map.Entry<Long, Integer> entry : newOrderRequest.productsQuantities().entrySet()) {
+                Product product = productService.findProductById(entry.getKey());
+                productsQuantities.put(product, entry.getValue());
+            }
+
+            newOrder.setProductsQuantities(productsQuantities);
+            newOrder.setOrderDate(LocalDate.now());
+            newOrder.setPerson(personService.getCustomerById(newOrderRequest.customerId()));
+
+            BigDecimal total = calculateOrderTotal(productsQuantities);
+            newOrder.setOrderTotal(total);
+
+            orderRepository.save(newOrder);
+        }
     }
+
+    private BigDecimal calculateOrderTotal(Map<Product, Integer> productsQuantities) {
+        BigDecimal total = BigDecimal.ZERO;
+
+        for (Map.Entry<Product, Integer> entry : productsQuantities.entrySet()) {
+            BigDecimal productPrice = entry.getKey().getPrice();
+            total = total.add(productPrice.multiply(new BigDecimal(entry.getValue())));
+        }
+
+        return total;
+    }
+
 
     public void deleteOrder(Long id) {
         Order order = orderRepository.findById(id).get();
@@ -41,11 +78,6 @@ public class OrderService {
     }
 
     public List<Order> getOrders() {
-        List<Order> all = orderRepository.findAll();
-        HashMap<Product, Integer> productsQuantities = new HashMap<>();
-        Product key = new Product(1L, "Cactus", "A small and prickly cactus plant", "sku", new BigDecimal("10.99"), 100, "https://images.unsplash.com/photo-1622599806389-9c6e0eb0fcec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80",new HashSet<>());
-        productsQuantities.put(key,2);
-        all.add(new Order(1L, new Date(2023,1,2), BigDecimal.TEN, productsQuantities,new Person()));
-        return all;
+       return orderRepository.findAll();
     }
 }

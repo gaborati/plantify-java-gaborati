@@ -19,7 +19,7 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product getProductById(Integer id) {
+    public Product getProductById(Long id) {
         return productRepository.findById(id).orElseThrow();
     }
 
@@ -29,4 +29,7 @@ public class ProductService {
     }
 
 
+    public Product findProductById(Long id) {
+        return productRepository.findById(id).orElseThrow();
+    }
 }
