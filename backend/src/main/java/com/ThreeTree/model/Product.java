@@ -35,7 +35,7 @@ public class Product {
     private String image;
 
     @JsonBackReference
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany
     private Set<Order> orders;
 
 }
