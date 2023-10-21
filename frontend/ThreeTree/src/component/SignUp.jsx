@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -61,6 +60,7 @@ export default function SignUp() {
         } catch (error) {
             console.error('Failed to send request:', error);
         }
+
     };
 
     return (
@@ -143,6 +143,9 @@ export default function SignUp() {
                             fullWidth
                             variant="contained"
                             sx={{mt: 3, mb: 2}}
+                            onClick={() => {
+                                window.location.href = "/Products"
+                            }}
                         >
                             Sign Up
                         </Button>

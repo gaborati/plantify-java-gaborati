@@ -76,7 +76,7 @@ export default function Products() {
                         size='large'
                         variant='contained'
                         onClick={() => {
-                            window.location.href = "/signup"
+                            window.location.href = "/CheckOut"
                         }}
                     >
                         Cart
