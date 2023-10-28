@@ -5,6 +5,7 @@ import Checkout from "./component/CheckOut.jsx";
 import Products from './component/Products.jsx';
 import SuccessfullySignedUp from "./component/SuccessFullySignedUp.jsx";
 import SuccessfullyOrdered from "./component/SuccessfullyOrdered.jsx";
+import SignIn from "./component/SignIn.jsx";
 
 
 
@@ -19,6 +20,7 @@ function App() {
                     <Route path="/products" element={<Products/>}/>
                     <Route path="/successfullySignedUp" element={<SuccessfullySignedUp/>}/>
                     <Route path="/successfullyOrdered" element={<SuccessfullyOrdered/>}/>
+                    <Route path="/signin" element={<SignIn/>}/>
                 </Routes>
             </div>
         </Router>

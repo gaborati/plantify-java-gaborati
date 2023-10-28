@@ -2,6 +2,7 @@ import * as React from 'react';
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { Stack } from "@mui/system";
 
 function Index() {
     return (
@@ -16,22 +17,79 @@ function Index() {
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat',
                     minHeight: '100vh',
-                    padding: '1em'
+                    padding: '1em',
+                    position: 'relative', // Make the Typography position relative
                 }}
             >
-                <Button
-                    color='primary'
-                    size='large'
-                    variant='contained'
-                    onClick={() => {
-                        window.location.href = "/signup"
+                <Typography
+                    component="h1"
+                    variant="h2"
+                    color={"text.white"}
+                    sx={{
+                        textAlign: 'center',
+                        position: 'absolute',
+                        top: '22%', // Position the text in the middle vertically
+                        left: '50%', // Position the text in the middle horizontally
+                        transform: 'translate(-50%, -50%)', // Center the text
+                        zIndex: 1,
+                        fontFamily: 'Murray Text',
+                        fontSize: '5.5em',
+                        textShadow: '0px 4px 4px rgba(0, 0, 0, 1)',
+                        fontWeight: 'Medium',
+                        width: '100%',
                     }}
                 >
-                    Sign Up
-                </Button>
+                    Welcome to Plantify
+                </Typography>
+                <Box
+                    sx={{
+                        minHeight: '100vh',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        padding: '1em',
+                        marginLeft: '20em',
+                        marginRight: '17em',
+                        marginTop: '-4em',
+                    }}
+                >
+                    <Button
+                        color='primary'
+                        size='large'
+                        variant='contained'
+                        align="center"
+                        onClick={() => {
+                            window.location.href = "/products"
+                        }}
+                    >
+                        Visit Store
+                    </Button>
+                </Box>
+                <Stack direction="row" spacing={2}>
+                    <Button
+                        color='primary'
+                        size='large'
+                        onClick={() => {
+                            window.location.href = "/signin"
+                        }}
+                    >
+                        Sign In
+                    </Button>
+                    <Button
+                        color='primary'
+                        size='large'
+                        variant='contained'
+                        onClick={() => {
+                            window.location.href = "/signup"
+                        }}
+                    >
+                        Sign Up
+                    </Button>
+                </Stack>
             </Typography>
         </React.Fragment>
-    );
+    )
 }
 
 export default Index;
