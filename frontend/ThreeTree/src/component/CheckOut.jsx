@@ -9,20 +9,14 @@ import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import Review from './Review';
-import {useEffect} from "react";
 
 function Copyright() {
-
-
-
-
-
 
     return (
         <Typography variant="body2" color="text.secondary" align="center">
             {'Copyright © '}
             <Link color="inherit" href="https://mui.com/">
-                Your Website
+                Plantify
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -40,14 +34,14 @@ export default function Checkout() {
     return (
         <React.Fragment>
             <CssBaseline />
-            <AppBar position="absolute" elevation={0} sx={{ position: 'relative', borderBottom: (t) => `1px solid ${t.palette.divider}`, backgroundColor: 'black' }}>
+            <AppBar position="absolute" elevation={0} sx={{ position: 'relative', borderBottom: (t) => `1px solid ${t.palette.divider}`, backgroundColor: 'grey' }}>
                 <Toolbar>
-                    <Typography variant="h6" color="inherit" noWrap>
-                        Company name
+                    <Typography variant="h6" color="black" noWrap>
+                        PLantify
                     </Typography>
                 </Toolbar>
             </AppBar>
-            <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
+            <Container component="main" maxWidth="sm" sx={{ mb: 4 }} >
                 <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
                     <Typography component="h1" variant="h4" align="center">
                         Checkout
