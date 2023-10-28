@@ -12,9 +12,9 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
+import * as React from "react";
 import {useEffect, useState} from "react";
 import TextField from "@mui/material/TextField";
-import * as React from "react";
 import PaginationControlled from "./PaginationControlled.jsx";
 
 
@@ -80,6 +80,26 @@ export default function Products() {
                         minHeight: '100vh',
                     }}
                 >
+                        <Typography
+                            component="h1"
+                            variant="h2"
+                            color={"text.white"}
+                            sx={{
+                                textAlign: 'center',
+                                position: 'absolute',
+                                top: '22%', // Position the text in the middle vertically
+                                left: '50%', // Position the text in the middle horizontally
+                                transform: 'translate(-50%, -50%)', // Center the text
+                                zIndex: 1,
+                                fontFamily: 'Murray Text',
+                                fontSize: '11.5em',
+                                textShadow: '0px 4px 4px rgba(0, 0, 0, 1)',
+                                fontWeight: 'Medium',
+                                width: '100%',
+                            }}
+                        >
+                            Plantify
+                        </Typography>
                     <Typography
                         sx={{
                             position: 'fixed', // This makes the element fixed on the viewport
@@ -89,103 +109,104 @@ export default function Products() {
                             padding: '1em'     // Add some spacing from the top and right edges
                         }}
                     >
-                    <Button
-                        color='primary'
-                        size='large'
-                        variant='contained'
-                        onClick={() => {
-                            window.location.href = "/CheckOut"
+                        <Button
+                            color='primary'
+                            size='large'
+                            variant='contained'
+                            onClick={() => {
+                                window.location.href = "/CheckOut"
+                            }}
+                        >
+                            Cart
+                        </Button>
+                    </Typography>
+                </Box>
+
+                <Container maxWidth="sm">
+                    <Typography
+                        component="h1"
+                        variant="h2"
+                        align="center"
+                        color="text.primary"
+                        gutterBottom
+                        sx={{
+                            mt: 8,
+                            fontFamily: 'Murray Text',
+                            fontSize: '5em',
+                            textShadow: '0px 4px 4px rgba(0, 0, 0, 3)',
+                            fontWeight: 'Medium',
+                            width: '100%',
                         }}
                     >
-                        Cart
-                    </Button>
-                </Typography>
-            </Box>
+                        Choose your plant
+                    </Typography>
+                </Container>
 
-            <Container maxWidth="sm">
+                <Container sx={{py: 8}} maxWidth="md">
+                    <Grid container spacing={7}>
+                        {displayProducts(products, page, pageSize).map((product) => (
+                            <Grid item key={product.productId} xs={12} sm={6} md={4}>
+                                <Card
+                                    sx={{height: "100%", display: "flex", flexDirection: "column"}}
+                                >
+                                    <CardMedia
+                                        component="div"
+                                        sx={{
+                                            pt: "86.25%",
+                                        }}
+                                        image={product.image}
+                                    />
+                                    <CardContent sx={{flexGrow: 1}}>
+                                        <Typography gutterBottom variant="h5" component="h2">
+                                            {product.name}
+                                        </Typography>
+                                        <Typography>{product.description}</Typography>
+                                    </CardContent>
+                                    <TextField
+                                        label="Quantity"
+                                        type="number"
+                                        value={0}
+                                        onChange={() => {
+                                        }}
+                                        inputProps={{
+                                            min: 0,
+                                            step: 1,
+                                            inputMode: "numeric",
+                                        }}
+                                    />
+                                    <CardActions>
+                                        <Button size="small">Add to Cart</Button>
+                                    </CardActions>
+                                </Card>
+                            </Grid>
+                        ))}
+                    </Grid>
+                    <PaginationControlled
+                        onChange={handleChange}
+                        totalProducts={products.length}
+                        pageSize={pageSize}
+                        page={page}
+                    />
+                </Container>
+            </main>
+
+            <Box sx={{bgcolor: 'background.paper', p: 6}} component="footer">
+                <Typography variant="h6" align="center" gutterBottom>
+                    Visit Our Store
+                </Typography>
                 <Typography
-                    component="h1"
-                    variant="h2"
+                    variant="subtitle1"
                     align="center"
-                    color="text.primary"
-                    gutterBottom
-                    sx={{
-                        mt: 8,
-                        fontFamily: 'Murray Text',
-                        fontSize: '5em',
-                        textShadow: '0px 4px 4px rgba(0, 0, 0, 3)',
-                        fontWeight: 'Medium',
-                        width: '100%',
-                    }}
+                    color="text.secondary"
+                    component="p"
                 >
-                    Choose your plant
+                    Come see our full selection of plants and accessories at our physical store location.
                 </Typography>
-            </Container>
-
-            <Container sx={{py: 8}} maxWidth="md">
-                <Grid container spacing={7}>
-                    {displayProducts(products, page, pageSize).map((product) => (
-                        <Grid item key={product.productId} xs={12} sm={6} md={4}>
-                            <Card
-                                sx={{ height: "100%", display: "flex", flexDirection: "column" }}
-                            >
-                                <CardMedia
-                                    component="div"
-                                    sx={{
-                                        pt: "86.25%",
-                                    }}
-                                    image={product.image}
-                                />
-                                <CardContent sx={{ flexGrow: 1 }}>
-                                    <Typography gutterBottom variant="h5" component="h2">
-                                        {product.name}
-                                    </Typography>
-                                    <Typography>{product.description}</Typography>
-                                </CardContent>
-                                <TextField
-                                    label="Quantity"
-                                    type="number"
-                                    value={0}
-                                    onChange={() => {}}
-                                    inputProps={{
-                                        min: 0,
-                                        step: 1,
-                                        inputMode: "numeric",
-                                    }}
-                                />
-                                <CardActions>
-                                    <Button size="small">Add to Cart</Button>
-                                </CardActions>
-                            </Card>
-                        </Grid>
-                    ))}
-                </Grid>
-                <PaginationControlled
-                    onChange={handleChange}
-                    totalProducts={products.length}
-                    pageSize={pageSize}
-                    page={page}
-                />
-            </Container>
-        </main>
-
-    <Box sx={{bgcolor: 'background.paper', p: 6}} component="footer">
-        <Typography variant="h6" align="center" gutterBottom>
-            Visit Our Store
-        </Typography>
-        <Typography
-            variant="subtitle1"
-            align="center"
-            color="text.secondary"
-            component="p"
-        >
-            Come see our full selection of plants and accessories at our physical store location.
-        </Typography>
-        <Copyright/>
-    </Box>
-    {/* End footer */
-    }
-</ThemeProvider>
-)
-    ;
+                <Copyright/>
+            </Box>
+            {/* End footer */
+            }
+        </ThemeProvider>
+    )
+        ;
 }
