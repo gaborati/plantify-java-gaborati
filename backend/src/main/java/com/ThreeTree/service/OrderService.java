@@ -10,9 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Transactional
 @Service
@@ -38,11 +38,11 @@ public class OrderService {
         if (newOrderRequest.productsQuantities() != null) {
             Order newOrder = new Order();
 
-            Map<Product, Integer> productsQuantities = new HashMap<>();
-            for (Map.Entry<Long, Integer> entry : newOrderRequest.productsQuantities().entrySet()) {
-                Product product = productService.findProductById(entry.getKey());
-                productsQuantities.put(product, entry.getValue());
-            }
+            Map<Product, Integer> productsQuantities = newOrderRequest.productsQuantities().entrySet().stream()
+                    .collect(Collectors.toMap(
+                            entry -> productService.findProductById(entry.getKey()),
+                            Map.Entry::getValue
+                    ));
 
             newOrder.setProductsQuantities(productsQuantities);
             newOrder.setOrderDate(LocalDate.now());
@@ -56,15 +56,11 @@ public class OrderService {
     }
 
     private BigDecimal calculateOrderTotal(Map<Product, Integer> productsQuantities) {
-        BigDecimal total = BigDecimal.ZERO;
-
-        for (Map.Entry<Product, Integer> entry : productsQuantities.entrySet()) {
-            BigDecimal productPrice = entry.getKey().getPrice();
-            total = total.add(productPrice.multiply(new BigDecimal(entry.getValue())));
-        }
-
-        return total;
+        return productsQuantities.entrySet().stream()
+                .map(entry -> entry.getKey().getPrice().multiply(new BigDecimal(entry.getValue())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
+
 
 
     public void deleteOrder(Long id) {
