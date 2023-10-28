@@ -15,6 +15,7 @@ import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {useEffect, useState} from "react";
 import TextField from "@mui/material/TextField";
 import * as React from "react";
+import PaginationControlled from "./PaginationControlled.jsx";
 
 
 function Copyright() {
@@ -22,7 +23,7 @@ function Copyright() {
         <Typography variant="body2" color="text.secondary" align="center">
             {'Copyright © '}
             <Link color="inherit" href="https://mui.com/">
-                Your Website
+                Plantify
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -38,8 +39,25 @@ const fetchProducts = async () => {
     return products;
 }
 
+function displayProducts(products, page, pageSize) {
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    console.log(`startIndex: ${startIndex}, endIndex: ${endIndex}`); // Add this line to check the startIndex and endIndex values
+    return products.slice(startIndex, endIndex);
+}
+
+
+const pageSize = 9;
+
 export default function Products() {
+
     const [products, setProducts] = useState([]);
+    const [page, setPage] = React.useState(1);
+    const handleChange = (event, value) => {
+        console.log(value); // Add this line to check the selected page value
+        setPage(value);
+    };
+
 
     useEffect(() => {
         fetchProducts().then((products) => {
@@ -91,54 +109,63 @@ export default function Products() {
                     align="center"
                     color="text.primary"
                     gutterBottom
+                    sx={{
+                        mt: 8,
+                        fontFamily: 'Murray Text',
+                        fontSize: '5em',
+                        textShadow: '0px 4px 4px rgba(0, 0, 0, 3)',
+                        fontWeight: 'Medium',
+                        width: '100%',
+                    }}
                 >
                     Choose your plant
                 </Typography>
             </Container>
 
             <Container sx={{py: 8}} maxWidth="md">
-                <Grid container spacing={4}>
-                    {products.map((product) => (
+                <Grid container spacing={7}>
+                    {displayProducts(products, page, pageSize).map((product) => (
                         <Grid item key={product.productId} xs={12} sm={6} md={4}>
                             <Card
-                                sx={{height: '100%', display: 'flex', flexDirection: 'column'}}
+                                sx={{ height: "100%", display: "flex", flexDirection: "column" }}
                             >
                                 <CardMedia
                                     component="div"
                                     sx={{
-                                        // 16:9
-                                        pt: '56.25%',
+                                        pt: "86.25%",
                                     }}
                                     image={product.image}
                                 />
-                                <CardContent sx={{flexGrow: 1}}>
+                                <CardContent sx={{ flexGrow: 1 }}>
                                     <Typography gutterBottom variant="h5" component="h2">
                                         {product.name}
                                     </Typography>
-                                    <Typography>
-                                        {product.description}
-                                    </Typography>
+                                    <Typography>{product.description}</Typography>
                                 </CardContent>
                                 <TextField
                                     label="Quantity"
                                     type="number"
                                     value={0}
-                                    onChange={() => {
-                                    }}
+                                    onChange={() => {}}
                                     inputProps={{
                                         min: 0,
                                         step: 1,
-                                        inputMode: 'numeric',
+                                        inputMode: "numeric",
                                     }}
                                 />
                                 <CardActions>
                                     <Button size="small">Add to Cart</Button>
                                 </CardActions>
-
                             </Card>
                         </Grid>
                     ))}
                 </Grid>
+                <PaginationControlled
+                    onChange={handleChange}
+                    totalProducts={products.length}
+                    pageSize={pageSize}
+                    page={page}
+                />
             </Container>
         </main>
 
