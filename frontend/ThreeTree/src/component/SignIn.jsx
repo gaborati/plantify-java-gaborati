@@ -67,12 +67,12 @@ export default function SignIn() {
                             sx={{
                                 textAlign: 'center',
                                 position: 'absolute',
-                                top: '22%', // Position the text in the middle vertically
-                                left: '50%', // Position the text in the middle horizontally
+                                top: '7%', // Position the text in the middle vertically
+                                left: '59%', // Position the text in the middle horizontally
                                 transform: 'translate(-85%, -80%)', // Center the text
                                 zIndex: 1,
                                 fontFamily: 'Murray Text',
-                                fontSize: '5.5em',
+                                fontSize: '10em',
                                 textShadow: '0px 4px 4px rgba(0, 0, 0, 1)',
                                 fontWeight: 'Medium',
                                 width: '100%',
