@@ -92,7 +92,7 @@ export default function Products() {
                                 transform: 'translate(-50%, -50%)', // Center the text
                                 zIndex: 1,
                                 fontFamily: 'Murray Text',
-                                fontSize: '11.5em',
+                                fontSize: '16.5em',
                                 textShadow: '0px 4px 4px rgba(0, 0, 0, 1)',
                                 fontWeight: 'Medium',
                                 width: '100%',
@@ -138,7 +138,7 @@ export default function Products() {
                             width: '100%',
                         }}
                     >
-                        Choose your plant
+                        Choose Your Plant
                     </Typography>
                 </Container>
 
