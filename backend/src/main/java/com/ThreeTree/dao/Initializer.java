@@ -1,7 +1,7 @@
 package com.ThreeTree.dao;
 
+import com.ThreeTree.model.Person;
 import com.ThreeTree.model.Product;
-import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,14 +12,17 @@ import java.math.BigDecimal;
 public class Initializer {
 
     private final ProductRepository productRepository;
+    private final PersonRepository personRepository;
 
     @Autowired
-    public Initializer(ProductRepository productRepository) {
+    public Initializer(ProductRepository productRepository, PersonRepository personRepository) {
         this.productRepository = productRepository;
+        this.personRepository = personRepository;
     }
 
     @Transactional
     public void init() {
+        createPerson("John", "Doe", "password", "shdvcjhcs", "123456789", "Budapest");
         createProduct("Cactus", "A small and prickly cactus plant", new BigDecimal("10.99"), 100, "https://images.unsplash.com/photo-1622599806389-9c6e0eb0fcec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80");
         createProduct("Spider Plant", "An easy-to-care-for indoor plant", new BigDecimal("12.99"), 80, "https://images.unsplash.com/photo-1610551724444-5fb527b5ad20?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2615&q=80");
         createProduct("Succulent", "A collection of beautiful succulent plants", new BigDecimal("15.99"), 120, "https://images.unsplash.com/photo-1463320898484-cdee8141c787?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80");
@@ -63,6 +66,19 @@ public class Initializer {
         product.setImage(image);
 
         productRepository.save(product);
+    }
+
+
+    public void createPerson(String firstName, String lastName, String passwordHash, String email, String phoneNumber, String address) {
+        Person person = new Person();
+        person.setFirstName(firstName);
+        person.setLastName(lastName);
+        person.setPasswordHash(passwordHash);
+        person.setEmail(email);
+        person.setPhoneNumber(phoneNumber);
+        person.setAddress(address);
+
+        personRepository.save(person);
     }
 
     private String generateSku() {

@@ -1,6 +1,7 @@
 package com.ThreeTree.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -34,7 +35,7 @@ public class Product {
     private Integer stock;
     private String image;
 
-    @JsonBackReference
+    @JsonManagedReference
     @ManyToMany
     private Set<Order> orders;
 

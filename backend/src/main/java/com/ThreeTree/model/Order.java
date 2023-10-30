@@ -1,5 +1,6 @@
 package com.ThreeTree.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -33,6 +34,8 @@ public class Order {
     @ElementCollection
     private Map<Product, Integer> productsQuantities;
 
+    @JsonBackReference
     @ManyToOne
+    @JoinColumn(name = "person_id")
     private Person person;
 }

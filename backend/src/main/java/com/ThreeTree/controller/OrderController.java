@@ -28,7 +28,6 @@ public class OrderController {
 
     @GetMapping
     public List<Order> getAllOrders() {
-        System.out.println("tfztguh");
         return orderService.getOrders();
     }
 
