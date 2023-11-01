@@ -69,11 +69,11 @@ public class Initializer {
     }
 
 
-    public void createPerson(String firstName, String lastName, String passwordHash, String email, String phoneNumber, String address) {
+    public void createPerson(String firstName, String lastName, String password, String email, String phoneNumber, String address) {
         Person person = new Person();
         person.setFirstName(firstName);
         person.setLastName(lastName);
-        person.setPasswordHash(passwordHash);
+        person.setPassword(password);
         person.setEmail(email);
         person.setPhoneNumber(phoneNumber);
         person.setAddress(address);
