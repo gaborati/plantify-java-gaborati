@@ -16,12 +16,9 @@ import org.springframework.stereotype.Service;
 public class AuthenticationService {
 
     private final PersonRepository repository;
-    private PasswordEncoder passwordEncoder;
-
+    private final PasswordEncoder passwordEncoder; // TODO: has to be final to be picked up by constructor
     private final JwtService jwtService;
-
     private final AuthenticationManager authenticationManager;
-
 
     public AuthenticationResponse register(RegisterRequest request) {
     var person = Person.builder()
