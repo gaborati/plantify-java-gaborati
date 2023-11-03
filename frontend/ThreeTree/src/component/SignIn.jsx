@@ -11,7 +11,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {createTheme, ThemeProvider} from '@mui/material/styles';
 
 function Copyright(props) {
     return (
@@ -30,20 +30,41 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function SignIn() {
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+async function submitForm(event) {
+    event.preventDefault();
+    const data = new FormData(event.target);
+
+    const requestBody = {
+        email: data.get('email'),
+        password: data.get('password')
     };
+
+    try {
+        const response = await fetch('/api/v1/authenticate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        });
+
+        if (!response.ok) {
+            throw new Error("ERROR: Failed to send request to server.");
+        } else {
+            console.log("Successfully sent request to server.");
+        }
+
+    } catch (error) {
+        console.error('Failed to send request:', error);
+    }
+}
+
+export default function SignIn() {
 
     return (
         <ThemeProvider theme={defaultTheme}>
-            <Grid container component="main" sx={{ height: '100vh' }}>
-                <CssBaseline />
+            <Grid container component="main" sx={{height: '100vh'}}>
+                <CssBaseline/>
                 <Grid
                     item
                     xs={false}
@@ -76,6 +97,7 @@ export default function SignIn() {
                                 textShadow: '0px 4px 4px rgba(0, 0, 0, 1)',
                                 fontWeight: 'Medium',
                                 width: '100%',
+                                color: 'grey',
                             }}
                         >
                             Plantify
@@ -92,13 +114,13 @@ export default function SignIn() {
                             alignItems: 'center',
                         }}
                     >
-                        <Avatar sx={{ m: 1, bgcolor: 'primary' }}>
-                            <LockOutlinedIcon />
+                        <Avatar sx={{m: 1, bgcolor: 'primary'}}>
+                            <LockOutlinedIcon/>
                         </Avatar>
                         <Typography component="h1" variant="h5">
                             Sign in
                         </Typography>
-                        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                        <Box component="form" noValidate onSubmit={submitForm} sx={{mt: 1}}>
                             <TextField
                                 margin="normal"
                                 required
@@ -120,14 +142,14 @@ export default function SignIn() {
                                 autoComplete="current-password"
                             />
                             <FormControlLabel
-                                control={<Checkbox value="remember" color="primary" />}
+                                control={<Checkbox value="remember" color="primary"/>}
                                 label="Remember me"
                             />
                             <Button
                                 type="submit"
                                 fullWidth
                                 variant="contained"
-                                sx={{ mt: 3, mb: 2 }}
+                                sx={{mt: 3, mb: 2}}
                             >
                                 Sign In
                             </Button>
@@ -143,7 +165,7 @@ export default function SignIn() {
                                     </Link>
                                 </Grid>
                             </Grid>
-                            <Copyright sx={{ mt: 5 }} />
+                            <Copyright sx={{mt: 5}}/>
                         </Box>
                     </Box>
                 </Grid>

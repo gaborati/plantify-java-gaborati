@@ -96,6 +96,7 @@ export default function Products() {
                                 textShadow: '0px 4px 4px rgba(0, 0, 0, 1)',
                                 fontWeight: 'Medium',
                                 width: '100%',
+                                color: "grey"
                             }}
                         >
                             Plantify

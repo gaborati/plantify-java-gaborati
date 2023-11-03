@@ -36,6 +36,7 @@ function Index() {
                         fontSize: '7.5em',
                         textShadow: '0px 4px 4px rgba(0, 0, 0, 1)',
                         fontWeight: 'Medium',
+                        color: 'grey',
                         width: '100%',
                     }}
                 >
