@@ -84,7 +84,7 @@ export default function SignUp() {
                     <Box
                         sx={{
                             width: '100%',
-                            bgcolor: 'background.paper',
+                            backgroundColor: 'darkgrey',
                             marginTop: 1,
                             display: 'flex',
                             flexDirection: 'column',
@@ -94,7 +94,7 @@ export default function SignUp() {
                             boxShadow: '0px 10px 20px 0px rgba(0,0,0,1)',
                         }}
                     >
-                        <Avatar sx={{m: 1, color: 'grey'}}>
+                        <Avatar sx={{m: 1, color: 'black'}}>
                             <LockOutlinedIcon/>
                         </Avatar>
                         <Typography component="h1" variant="h5" >

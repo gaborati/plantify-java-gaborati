@@ -18,7 +18,7 @@ function Index() {
                     backgroundRepeat: 'no-repeat',
                     minHeight: '100vh',
                     padding: '1em',
-                    position: 'relative', // Make the Typography position relative
+                    position: 'relative',
                 }}
             >
                 <Typography

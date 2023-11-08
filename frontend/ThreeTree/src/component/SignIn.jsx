@@ -104,7 +104,7 @@ export default function SignIn() {
                         </Box>
                     </Typography>
                 </Grid>
-                <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+                <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square bgcolor={'darkgrey'} >
                     <Box
                         sx={{
                             my: 8,
@@ -114,7 +114,7 @@ export default function SignIn() {
                             alignItems: 'center',
                         }}
                     >
-                        <Avatar sx={{m: 1, bgcolor: 'primary'}}>
+                        <Avatar sx={{m: 1, color: 'black'}}>
                             <LockOutlinedIcon/>
                         </Avatar>
                         <Typography component="h1" variant="h5">
