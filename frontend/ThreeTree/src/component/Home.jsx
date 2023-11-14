@@ -18,7 +18,7 @@ function Index() {
                     backgroundRepeat: 'no-repeat',
                     minHeight: '100vh',
                     padding: '1em',
-                    position: 'relative', // Make the Typography position relative
+                    position: 'relative',
                 }}
             >
                 <Typography
@@ -36,6 +36,7 @@ function Index() {
                         fontSize: '7.5em',
                         textShadow: '0px 4px 4px rgba(0, 0, 0, 1)',
                         fontWeight: 'Medium',
+                        color: 'grey',
                         width: '100%',
                     }}
                 >

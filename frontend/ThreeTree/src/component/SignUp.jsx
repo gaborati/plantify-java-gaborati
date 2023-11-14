@@ -39,11 +39,12 @@ export default function SignUp() {
             LastName: data.get('Last Name'),
             email: data.get('email'),
             phoneNumber: data.get('phoneNumber'),
-            address: data.get('address')
+            address: data.get('address'),
+            password: data.get('password')
         };
 
         try {
-            const response = await fetch('/api/customers', {
+            const response = await fetch('/api/v1/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -83,7 +84,7 @@ export default function SignUp() {
                     <Box
                         sx={{
                             width: '100%',
-                            bgcolor: 'background.paper',
+                            backgroundColor: 'darkgrey',
                             marginTop: 1,
                             display: 'flex',
                             flexDirection: 'column',
@@ -93,10 +94,10 @@ export default function SignUp() {
                             boxShadow: '0px 10px 20px 0px rgba(0,0,0,1)',
                         }}
                     >
-                        <Avatar sx={{m: 1, bgcolor: 'primary'}}>
+                        <Avatar sx={{m: 1, color: 'black'}}>
                             <LockOutlinedIcon/>
                         </Avatar>
-                        <Typography component="h1" variant="h5">
+                        <Typography component="h1" variant="h5" >
                             Sign Up to Plantify
                         </Typography>
                         <Box component="form" onSubmit={handleSubmit} noValidate sx={{mt: 1}}>
@@ -151,6 +152,17 @@ export default function SignUp() {
                                 type="text"
                                 id="phoneNumber"
                                 autoComplete="tel"
+                            />
+
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                name="password"
+                                label="password"
+                                type="text"
+                                id="password"
+                                autoComplete="given-name"
                             />
                             <FormControlLabel
                                 control={<Checkbox value="remember" color="primary"/>}

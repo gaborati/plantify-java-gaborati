@@ -26,4 +26,4 @@ COPY --from=build .mvn/wrapper/maven-wrapper.jar /app/app.jar
 EXPOSE 8080
 #
 ## Run the JAR file when the container launches
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "app.jar"]g

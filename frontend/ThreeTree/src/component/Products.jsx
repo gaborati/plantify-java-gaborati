@@ -16,6 +16,7 @@ import * as React from "react";
 import {useEffect, useState} from "react";
 import TextField from "@mui/material/TextField";
 import PaginationControlled from "./PaginationControlled.jsx";
+import {color} from "@mui/system";
 
 
 function Copyright() {
@@ -96,6 +97,7 @@ export default function Products() {
                                 textShadow: '0px 4px 4px rgba(0, 0, 0, 1)',
                                 fontWeight: 'Medium',
                                 width: '100%',
+                                color: "grey"
                             }}
                         >
                             Plantify
@@ -106,8 +108,8 @@ export default function Products() {
                             top: 0,            // This positions the button at the top of the viewport
                             right: 0,          // This positions the button to the far right of the viewport
                             zIndex: 1,         // This ensures the button appears above other content
-                            padding: '1em'     // Add some spacing from the top and right edges
-                        }}
+                            padding: '1em',     // Add some spacing from the top and right edges
+                    }}
                     >
                         <Button
                             color='primary'
@@ -142,9 +144,10 @@ export default function Products() {
                     </Typography>
                 </Container>
 
-                <Container sx={{py: 8}} maxWidth="md">
+                <Container sx={{ py: 8 }} maxWidth="md">
                     <Grid container spacing={7}>
-                        {displayProducts(products, page, pageSize).map((product) => (
+
+                    {displayProducts(products, page, pageSize).map((product) => (
                             <Grid item key={product.productId} xs={12} sm={6} md={4}>
                                 <Card
                                     sx={{height: "100%", display: "flex", flexDirection: "column"}}
