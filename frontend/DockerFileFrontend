@@ -1,0 +1,22 @@
+# Kiinduló kép kiválasztása
+FROM node:14
+
+# Munkakönyvtár létrehozása
+WORKDIR /app
+
+# Fájlok másolása
+COPY package*.json ./
+
+# Függőségek telepítése
+RUN npm install
+
+# Frontend kód másolása (src mappa, index.html, vite.config.js)
+COPY src/ ./src/
+COPY index.html ./
+COPY vite.config.js ./
+
+# Port beállítása
+EXPOSE 3000
+
+# Alkalmazás indítása
+CMD [ "npm", "start" ]

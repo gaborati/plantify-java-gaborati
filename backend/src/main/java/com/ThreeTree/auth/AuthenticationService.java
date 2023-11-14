@@ -20,13 +20,15 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
+
         var person = Person.builder()
                 .FirstName(request.getFirstName())
                 .LastName(request.getLastName())
                 .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
+                .password(passwordEncoder.encode(request.getPassword()))//Bcrypt algoritmust
                 .role((Role.USER))
                 .build();
+
         repository.save(person);
         var jwtToken = jwtService.generateToken(person);
         return AuthenticationResponse.builder()
