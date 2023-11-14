@@ -1,0 +1,29 @@
+# Build image
+FROM eclipse-temurin:17-jdk-jammy AS build
+
+# Set the working directory to /app
+WORKDIR /app
+
+# Maven Wrapper fájlok másolása a konténerbe
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+RUN ./mvnw dependency:resolve
+COPY src ./src
+RUN ./mvnw package
+
+#CMD ["./mvnw","spring-boot:run"]
+
+# Create a new image based on a minimal JRE image
+FROM openjdk:17-jdk-slim
+#
+## Set the working directory to /app
+WORKDIR /app
+#
+## Copy the JAR file from the build image to the runtime image
+COPY --from=build .mvn/wrapper/maven-wrapper.jar /app/app.jar
+
+## Expose the port that the Spring Boot application will run on
+EXPOSE 8080
+#
+## Run the JAR file when the container launches
+CMD ["java", "-jar", "app.jar"]
