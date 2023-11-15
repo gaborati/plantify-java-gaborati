@@ -1,16 +1,14 @@
 version: '3'
 services:
   postgres:
-    image: postgres:14
-    container_name: my-postgres-container
+    image: postgres
+    container_name: ThreeTree
     environment:
-      POSTGRES_DB: mydatabase
+      POSTGRES_DB: customer
       POSTGRES_USER: atidb
       POSTGRES_PASSWORD: atidb
     ports:
-      - "5532:5532"
-    volumes:
-      - /path/to/local/data:/var/lib/postgresql/data
+      - "5432:5432"
     networks:
       - db
 
@@ -25,6 +23,7 @@ services:
       - db
     restart: unless-stopped
     command: ./mvnw package
-
+    depends_on:
+      - postgres
 networks:
   db:
