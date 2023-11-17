@@ -9,8 +9,7 @@ services:
       POSTGRES_PASSWORD: atidb
     ports:
       - "5432:5432"
-    networks:
-      - db
+
 
   backend:
     container_name: threetree-backend
@@ -19,11 +18,16 @@ services:
       dockerfile: DockerfileBackend
     ports:
       - "8080:8080"
-    networks:
-      - db
     restart: unless-stopped
     command: ./mvnw package
     depends_on:
       - postgres
-networks:
-  db:
+
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: DockerFileFrontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
