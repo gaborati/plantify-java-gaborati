@@ -125,13 +125,12 @@ export default function SignUp() {
                                 margin="normal"
                                 required
                                 fullWidth
-                                name="address"
-                                label="Address"
-                                type="text"
-                                id="address"
-                                autoComplete="address-line1"
+                                name="password"
+                                label="Password"
+                                type="password"
+                                id="password"
+                                autoComplete="current-password"
                             />
-
                             <TextField
                                 margin="normal"
                                 required
@@ -141,6 +140,16 @@ export default function SignUp() {
                                 type="text"
                                 id="email"
                                 autoComplete="email"
+                            />
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                name="address"
+                                label="Address"
+                                type="text"
+                                id="address"
+                                autoComplete="address-line1"
                             />
 
                             <TextField
@@ -153,30 +162,15 @@ export default function SignUp() {
                                 id="phoneNumber"
                                 autoComplete="tel"
                             />
-
-                            <TextField
-                                margin="normal"
-                                required
-                                fullWidth
-                                name="password"
-                                label="password"
-                                type="text"
-                                id="password"
-                                autoComplete="given-name"
-                            />
-                            <FormControlLabel
-                                control={<Checkbox value="remember" color="primary"/>}
-                                label="Remember me"
-                            />
                             <Button
                                 type="submit"
                                 fullWidth
                                 variant="contained"
                                 sx={{
-                                    width: '46%', // Set the width to 50%
+                                    width: '90%', // Set the width to 50%
                                     height: '2.8em',
                                     mx: "auto",    // Center the button horizontally
-                                    mt: 5,
+                                    mt: 2,
                                     mb: 3,
                                     ml: 3.8
                                 }}
@@ -192,7 +186,7 @@ export default function SignUp() {
                             </Grid>
                         </Box>
                     </Box>
-                    <Copyright sx={{mt: 8, mb: 4}}/>
+
                 </Container>
             </Typography>
         </ThemeProvider>

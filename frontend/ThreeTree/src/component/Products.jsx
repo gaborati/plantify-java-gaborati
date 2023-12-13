@@ -10,22 +10,23 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import * as React from "react";
 import {useEffect, useState} from "react";
 import TextField from "@mui/material/TextField";
 import PaginationControlled from "./PaginationControlled.jsx";
-import {color} from "@mui/system";
+import {IconButton} from "@mui/material";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+
+
+
 
 
 function Copyright() {
     return (
         <Typography variant="body2" color="text.secondary" align="center">
             {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Plantify
-            </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
         </Typography>
@@ -81,6 +82,65 @@ export default function Products() {
                         minHeight: '100vh',
                     }}
                 >
+
+                    <Box sx={{ flexGrow: 1, position: 'sticky', top: 0, zIndex: 1000 }}>
+                        <AppBar position="sticky">
+                            <Toolbar>
+
+                                <Typography
+                                    variant="h6"
+                                    noWrap
+                                    component="a"
+                                    sx={{
+                                        mr: 2,
+                                        display: { xs: 'none', md: 'flex' },
+                                        fontFamily: 'monospace',
+                                        fontWeight: 700,
+                                        letterSpacing: '.3rem',
+                                        color: 'inherit',
+                                        textDecoration: 'none',
+                                    }}
+                                >
+                                    LOGO
+                                </Typography>
+
+
+                                <Button
+                                    variant="h6"
+                                    component="div"
+                                    sx={{ flexGrow: 1, fontSize: '0.8rem', marginRight: '8px' }}
+                                    onClick={() => {
+                                        window.location.href = "/signin";
+                                    }}
+                                >
+                                    Sign In
+                                </Button>
+                                <Button
+                                    variant="h6"
+                                    component="div"
+                                    sx={{ flexGrow: 1, fontSize: '0.8rem' }}
+                                    onClick={() => {
+                                        window.location.href = "/signup";
+                                    }}
+                                >
+                                    Sign Up
+                                </Button>
+                                <Button
+                                    variant="h1"
+                                    component="div"
+                                    sx={{ flexGrow: 1, fontSize: '0.8rem' }}
+                                    onClick={() => {
+                                        window.location.href = "/CheckOut"
+                                    }}
+                                >
+                                    Cart
+                                </Button>
+                            </Toolbar>
+                        </AppBar>
+                    </Box>
+
+
+
                         <Typography
                             component="h1"
                             variant="h2"
@@ -99,8 +159,9 @@ export default function Products() {
                                 width: '100%',
                                 color: "grey"
                             }}
+
                         >
-                            Plantify
+
                         </Typography>
                     <Typography
                         sx={{
@@ -111,17 +172,11 @@ export default function Products() {
                             padding: '1em',     // Add some spacing from the top and right edges
                     }}
                     >
-                        <Button
-                            color='primary'
-                            size='large'
-                            variant='contained'
-                            onClick={() => {
-                                window.location.href = "/CheckOut"
-                            }}
-                        >
-                            Cart
-                        </Button>
+
                     </Typography>
+
+
+
                 </Box>
 
                 <Container maxWidth="sm">
@@ -140,7 +195,7 @@ export default function Products() {
                             width: '100%',
                         }}
                     >
-                        Choose Your Plant
+
                     </Typography>
                 </Container>
 
@@ -205,11 +260,17 @@ export default function Products() {
                 >
                     Come see our full selection of plants and accessories at our physical store location.
                 </Typography>
+
                 <Copyright/>
+
+
             </Box>
             {/* End footer */
             }
         </ThemeProvider>
     )
+
+
+
         ;
 }
