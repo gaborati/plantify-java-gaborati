@@ -100,7 +100,7 @@ export default function SignIn() {
                                 color: 'grey',
                             }}
                         >
-                            Plantify
+
                         </Box>
                     </Typography>
                 </Grid>
