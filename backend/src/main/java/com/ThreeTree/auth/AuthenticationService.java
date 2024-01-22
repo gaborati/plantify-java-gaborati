@@ -22,6 +22,8 @@ public class AuthenticationService {
     public AuthenticationResponse register(RegisterRequest request) {
 
         var person = Person.builder()
+                .firstName(request.getFirstName())
+                .lastName(request.getLastName())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))//Bcrypt algoritmust
                 .role((Role.USER))

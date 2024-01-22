@@ -1,4 +1,4 @@
-
+import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -9,42 +9,48 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import {createTheme, ThemeProvider} from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 const defaultTheme = createTheme();
 
 export default function SignUp() {
+    const [registrationStatus, setRegistrationStatus] = React.useState(null);
+    const [token, setToken] = React.useState(null);
+    console.log(token);
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
 
         const requestBody = {
-            FirstName: data.get('First Name'),
-            LastName: data.get('Last Name'),
+            firstName: data.get('firstName'),
+            lastName: data.get('lastName'),
             email: data.get('email'),
-            phoneNumber: data.get('phoneNumber'),
+            password: data.get('password'),
             address: data.get('address'),
-            password: data.get('password')
+            phoneNumber: data.get('phoneNumber'),
         };
 
         try {
             const response = await fetch('/api/v1/auth/register', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(requestBody)
+                body: JSON.stringify(requestBody),
             });
 
             if (!response.ok) {
-                throw new Error("ERROR: Failed to send request to server.");
+                throw new Error('ERROR: Failed to send request to server.');
             } else {
-                console.log("Successfully sent request to server.");
-            }
+                const responseData = await response.json();
+                setToken(responseData.token);
 
+                setRegistrationStatus('success');
+            }
         } catch (error) {
             console.error('Failed to send request:', error);
+            setRegistrationStatus('error');
         }
-
     };
 
     return (
@@ -63,7 +69,7 @@ export default function SignUp() {
                 }}
             >
                 <Container component="main" maxWidth="md">
-                    <CssBaseline/>
+                    <CssBaseline />
                     <Box
                         sx={{
                             width: '100%',
@@ -77,18 +83,23 @@ export default function SignUp() {
                             boxShadow: '0px 10px 20px 0px rgba(0,0,0,1)',
                         }}
                     >
-                        <Avatar sx={{m: 1, color: 'black'}}>
-                            <LockOutlinedIcon/>
+                        <Avatar sx={{ m: 1, color: 'black' }}>
+                            <LockOutlinedIcon />
                         </Avatar>
-                        <Typography component="h1" variant="h5" >
-
+                        <Typography component="h1" variant="h5">
+                            {registrationStatus === 'success' && (
+                                <div style={{ color: 'green' }}>Registration successful!</div>
+                            )}
+                            {registrationStatus === 'error' && (
+                                <div style={{ color: 'red' }}>Registration failed. Please try again.</div>
+                            )}
                         </Typography>
-                        <Box component="form" onSubmit={handleSubmit} noValidate sx={{mt: 1}}>
+                        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                             <TextField
                                 margin="normal"
                                 required
                                 fullWidth
-                                name="First Name"
+                                name="firstName"
                                 label="First Name"
                                 type="text"
                                 id="firstName"
@@ -98,7 +109,7 @@ export default function SignUp() {
                                 margin="normal"
                                 required
                                 fullWidth
-                                name="Last Name"
+                                name="lastName"
                                 label="Last Name"
                                 type="text"
                                 id="lastName"
@@ -134,7 +145,6 @@ export default function SignUp() {
                                 id="address"
                                 autoComplete="address-line1"
                             />
-
                             <TextField
                                 margin="normal"
                                 required
