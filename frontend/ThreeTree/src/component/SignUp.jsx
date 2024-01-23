@@ -167,9 +167,7 @@ export default function SignUp() {
                                     mb: 3,
                                     ml: 3.8
                                 }}
-                                onClick={() => {
-                                    window.location.href = "/signin"
-                                }}
+
                             >
                                 Sign Up
                             </Button>
